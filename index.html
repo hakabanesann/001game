@@ -2,65 +2,18 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <title>カードを引け！</title>
+  <title>TOP</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div>
-    <p>カードの枚数：
-      <select name="Card_count">
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      </select>
-    </p>
-    
-    <button id="startButton">CARDを引く</button>
-    <p>CARD：<span id="result"></span>
-    </p>
 
-  </div>
-
-  <div>
-    <h1>カードの説明</h1>
-    <p>
-      ・スワップ：出目の交換。<br>
-      ・ターンオーバー：ハイアンドローを逆にする。（「ハイ」であれば「ロー」になる）<br>
-      ・決定権：次のターンにダイスを振った後にハイアンドローを決定することができる。<br>
-    </p>
-  </div>
+  <ul>
+    <li class="nav"><a href="index.html">TOP</a></li>
+    <li class="nav"><a href="card.html">カード用</a></li>
+    <li class="nav"><a href="character.html">キャラクター</a></li>
+  </ul>
 
 </body>
-
-<!-- jquery -->
-<script  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"  
-  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="  crossorigin="anonymous">
-</script>
-
-<script>
-//arrayからcount個をランダムに引くスクリプト
-function randomSelected (array, count){
-    const copyArray = [...array];
-    const randomArray = [...Array(count)].map(() => {
-            const randomStaetIndex = Math.floor(Math.random()*copyArray.length);
-            return copyArray.splice(randomStaetIndex, 1).at();
-    })
-    return randomArray;
-  }
-
-// ボタンを押した際の動作
-$('#startButton').on('click', function() {
-    var Card_count = Number($('select[name="Card_count"]').val());
-    const randomNumber = randomSelected(Card,Card_count);
-     $('#result').text(randomNumber);
-    });
-
-    const Card = ["[+10]","[+20]","[+30]","[-10]","[-20]","[-30]","[スワップ]",];
-
-  
-</script>
 
 </html>
