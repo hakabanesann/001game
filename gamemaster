@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>GAME MASTER</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<!-- jquery -->
+<script  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"  
+integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="  crossorigin="anonymous">
+</script>
+
+</head>
+
+<body>
+
+  <ul>
+    <li class="nav"><a href="index.html">TOP</a></li>
+    <li class="nav"><a href="game.html">GAME</a></li>
+    <li class="nav"><a href="gamemaster.html">GAME MASTER</a></li>
+    <li class="nav"><a href="character.html">キャラクター</a></li>
+  </ul>
+
+  <h1>HIGH OR LOW</h1>
+
+  <img src="https://placehold.jp/9fd1d5/ffffff/120x50.png?text=START" id="start_hol">
+  <p>結果：<span id="result_hol"></span></p>
+
+  <p>ログ</p>
+  <ul id="log"></ul>
+
+  <h1>結果集計用</h1>
+  <p>準備中</p>
+  
+    <select name="hol_select">
+    <option value="0">high</option>
+    <option value="1">low</option>
+    </select>
+
+    <div>
+
+    <label>
+        PL1:
+        <input type="number" value="" id="PL01_num" class="PL_name">
+    </label>
+    <label>
+        PL2:
+        <input type="text" value="" id="PL02_num" class="PL_name">
+        </label>
+    </div>
+
+    <img src="https://placehold.jp/9fd1d5/ffffff/120x50.png?text=START" id="aaa">
+
+    <p>結果：<span id="win_GM"></span></p>
+
+    <script>
+    $('#aaa').on('click', function() {
+    var hol_select =Number($('select[name="hol_select"]').val());
+    var PL01_num = document.getElementById("PL01_num").value;
+    var PL02_num = document.getElementById("PL02_num").value;
+    var PL01_win = ["PL1の勝ち"];
+    var PL02_win = ["PL2の勝ち"];
+
+    if( hol_select == 0, PL01_num>PL02_num){
+        $('#win_GM').text(PL01_win);
+    }else{
+        $('#win_GM').text(PL02_win);
+    }
+   
+        
+    });
+    </script>
+    
+
+  <h1>対戦表</h1>
+
+  <table>
+      <tr>
+        <th>PL</th>
+        <th>1回戦</th>
+        <th>2回戦</th>
+        <th>3回戦</th>
+        <th>4回戦</th>
+        <th>5回戦</th>
+        <th>計</th>
+      </tr>
+      <tr>
+        <td>
+            <label>
+            PL1:
+            <input type="text" id="PL01_name" value="" class="PL_name">
+            </label>
+        </td>
+        <td class = 'PL01'><input type="checkbox"/></td>
+        <td class = 'PL01'><input type="checkbox"/></td>
+        <td class = 'PL01'><input type="checkbox"/></td>
+        <td class = 'PL01'><input type="checkbox"/></td>
+        <td class = 'PL01'><input type="checkbox"/></td>
+        <td><span id="result01"></span></td>
+      </tr>
+      <tr>
+        <td>
+            <label>
+            PL2:
+            <input type="text" id="PL02_name" value="" class="PL_name">
+            </label>
+        </td>
+        <td class = 'PL02'><input type="checkbox"/></td>
+        <td class = 'PL02'><input type="checkbox"/></td>
+        <td class = 'PL02'><input type="checkbox"/></td>
+        <td class = 'PL02'><input type="checkbox"/></td>
+        <td class = 'PL02'><input type="checkbox"/></td>
+        <td><span id="result02"></span></td>
+      </tr>
+  </table>
+
+    <p>結果：<span id="win"></span></p>
+
+    <h1>使い方</h1>
+    <p>
+    ・空白にプレイヤーの名前を入れてね。<br>
+    ・勝った方にチェックをつけよう。 <br> 
+    </p>
+
+</body>
+
+
+<script>
+
+//【計】にチェックボックスのチェック数を出す。
+$('input:checkbox').change(function() {
+const win_count01 = $('.PL01 input:checkbox:checked').length;
+const win_count02 = $('.PL02 input:checkbox:checked').length;
+$('#result01').text(win_count01);
+$('#result02').text(win_count02);
+
+//結果の表示
+var win = "の勝ち";
+var PL01_name = document.getElementById("PL01_name").value;
+
+if ( win_count01 >= 3 ){
+var PO01_win = PL01_name + win;
+$('#win').text(PO01_win);
+}else{
+    if(win_count02 >= 3 ){
+        var PL02_name = document.getElementById("PL02_name").value;
+        var PO02_win = PL02_name + win;
+        $('#win').text(PO02_win);
+    }else{
+        $('#win').text("");
+    }
+}
+});
+
+// higt or low
+$('#start_hol').on('click', function() {
+    var hol = ["high","low"];
+    var hol_random = Math.floor(Math.random()*hol.length);
+    var hol_result = hol[hol_random];
+    $('#result_hol').text(hol_result);
+    logAdd(hol_result);
+    });
+
+// higt or lowの履歴
+const log = document.querySelector("#log");
+
+function logAdd(add){
+  const newLog = document.createElement("li");
+  newLog.append(add);
+  log.prepend(newLog);
+}
+
+
+</script>
+
+</html>
