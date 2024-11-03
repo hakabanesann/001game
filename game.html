@@ -1,0 +1,67 @@
+  <!DOCTYPE html>
+  <html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>GAME</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width">
+  </head>
+
+  <body>
+    <ul>
+      <li class="nav"><a href="index.html">TOP</a></li>
+      <li class="nav"><a href="game.html">GAME</a></li>
+      <li class="nav"><a href="gamemaster.html">GAME MASTER</a></li>
+      <li class="nav"><a href="character.html">キャラクター</a></li>
+    </ul>
+    
+    <div>
+      <!-- ダイスロール　-->
+      <h1>ダイスロール</h1>
+      <div>
+      <img src="https://placehold.jp/9fd1d5/ffffff/120x50.png?text=START" id="start_DICE">
+      <p>DICE：<span id="result01"></span></p>
+
+      <p>ダイスログ</p>
+      <ul id="log"></ul>
+      </div>
+
+      <!-- カード　-->
+      <h1>カード</h1>
+      <div>
+        <p>カードの枚数：
+          <select name="Card_count">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          </select>
+        </p>
+      
+        <img src="https://placehold.jp/d59f9f/ffffff/120x50.png?text=Draw" id="start_CARD">
+        <p>CARD：<span id="result02"></span></p>
+      </div>
+   
+      <!-- カードの説明 -->
+      <div>
+      <h1>カードの説明</h1>
+        <p>
+         ・+n/-n：nの数字分、出目の数字が増減する。<br>
+         ・スワップ：出目の交換。<br>
+         ・ターンオーバー：ハイアンドローを逆にする。（「ハイ」であれば「ロー」になる）<br>
+         ・決定権：次のターンにダイスを振った後にハイアンドローを決定することができる。<br>
+         ・敗北者：使用するとこのターン敗けになる。<br>
+         ・星の導き：使用するとこのターン勝ちになる。<br>
+        </p>
+      </div>
+    </div> 
+  </body>
+
+  <!-- jquery -->
+  <script  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"  
+    integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="  crossorigin="anonymous">
+  </script>
+  <script src="game.js"></script>
+
+  </html>
